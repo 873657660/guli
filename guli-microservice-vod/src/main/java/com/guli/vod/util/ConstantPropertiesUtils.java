@@ -1,0 +1,32 @@
+package com.guli.vod.util;
+
+import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+/**
+ * @author zhangyanan
+ * @create 2019-09-28 19:47
+ * 常量类，读取配置文件application.properties中的配置
+ */
+@Component
+public class ConstantPropertiesUtils implements InitializingBean {
+
+    @Value("${aliyun.vod.file.keyid}")
+    private String keyId;
+
+    @Value("${aliyun.vod.file.keysecret}")
+    private String keySecret;
+
+
+    public static String ACCESS_KEY_ID;
+    public static String ACCESS_KEY_SECRET;
+
+    // 给静态成员赋值
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        ACCESS_KEY_ID = keyId;
+        ACCESS_KEY_SECRET = keySecret;
+    }
+
+}
